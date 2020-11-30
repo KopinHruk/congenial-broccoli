@@ -1,5 +1,8 @@
 import argparse
 
+from utils.inference import load_image, predict
+
+
 def get_parser():
     parser = argparse.ArgumentParser(description='Process some integers.')
 
@@ -13,7 +16,11 @@ def get_parser():
 def main():
     args = get_parser()
 
-    print(args)
+    image = load_image(args.image_path)
+
+    out = predict(image)
+
+    print(out)
 
 
 if __name__ == '__main__':
