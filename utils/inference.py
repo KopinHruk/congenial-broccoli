@@ -17,9 +17,23 @@ def load_image(path):
     return image
 
 
-def predict(image):
+def predict_class(image):
     model = Model(n=4)
     model.load_state_dict(torch.load('weights/classifier_model.pth'))
+    model.eval()
+
+    image = (torch.tensor(image))
+    image = torch.unsqueeze(image, 0)
+
+    x = model(image.float())
+    x = x.argmax(1).item()
+
+    return x
+
+
+def predict_amount(image):
+    model = Model(n=20)
+    model.load_state_dict(torch.load('weights/counter_model.pth'))
     model.eval()
 
     image = (torch.tensor(image))

@@ -35,7 +35,7 @@ usage:
 img_classifier image_path
 ```
 
-
+Predicted class and amount will be returned
 
 ### Command line arguments:
   image_path            -  path to image to process
