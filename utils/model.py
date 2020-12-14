@@ -16,7 +16,8 @@ class Model(nn.Module):
             nn.ReLU(),
             nn.BatchNorm1d(150),
             # nn.Dropout(0.5),
-            nn.Linear(150, n)
+            nn.Linear(150, n),
+
         )
 
     def forward(self, x):

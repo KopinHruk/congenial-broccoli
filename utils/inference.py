@@ -7,9 +7,10 @@ import cv2
 
 def load_image(path):
     if path.endswith('jpg'):
-        image = plt.imread(path)
-        image = (2.0 * image / 255) - 1.0
+        image = plt.imread(path)  # 0 255
+        image = (2.0 * image / 255) - 1.0  # -1 1
         image = cv2.resize(image, (300, 300))
+
         image = np.moveaxis(image, 2, 0)
     else:
         raise NotImplementedError
@@ -22,8 +23,8 @@ def predict_class(image):
     model.load_state_dict(torch.load('weights/classifier_model.pth'))
     model.eval()
 
-    image = (torch.tensor(image))
-    image = torch.unsqueeze(image, 0)
+    image = (torch.tensor(image))  # image size c, h, w
+    image = torch.unsqueeze(image, 0)  # image size 1, c, h, w
 
     x = model(image.float())
     x = x.argmax(1).item()
